@@ -3,6 +3,7 @@ createApp({
     setup() {
         const product = ref("Boots");
         const desc = ref("Wears on both feet, keeps you warm");
-        return { product, desc };
+        const image = ref("./assets/images/socks_green.jpg");
+        return { product, desc, image };
     },
 }).mount("#app");
