@@ -22,11 +22,11 @@
                 </div>
             </div>
             <div class="product-info">
-                <h1><a :href="product_link" target="_blank">{{product}}</a></h1>
+                <h1><a :href="productLink" target="_blank">{{product}}</a></h1>
                 <p>description : {{desc}}</p>
 
                 <!-- stock -->
-                <p v-if="!in_stock || inventory === 0">Out of Stock</p>
+                <p v-if="!inStock || inventory === 0">Out of Stock</p>
                 <p v-else-if="inventory > 10">In Stock</p>
                 <p v-else>Low Stock</p>
 
@@ -37,18 +37,18 @@
                     <li v-for="detail in details">{{detail}}</li>
                 </ul>
                 <div v-for="variant in variants" :key="variant.id" 
-                    @mouseover="update_image(variant.image)" 
+                    @mouseover="updateImage(variant.image)" 
                     class="color-circle"
                     :style="{backgroundColor: variant.color}"
-                    :class="{outOfStockImg: !in_stock}"
+                    :class="{outOfStockImg: !inStock}"
                 >
                     {{variant.color}}
                 </div>
                 <p><span v-for="size in sizes">{{size}} ,</span></p>
                 <!-- shorten version -->
                 <div>
-                    <button class="button" :disabled="!in_stock" @click="add_to_cart" :class="{disabledButton: !in_stock}">Add to cart</button>
-                    <button class="button" @click="toggle_in_stock">Toggle stock status</button>
+                    <button class="button" :disabled="!inStock" @click="addToCart" :class="{disabledButton: !inStock}">Add to cart</button>
+                    <button class="button" @click="toggleInStock">Toggle stock status</button>
                 </div>
             </div>
         </div>
