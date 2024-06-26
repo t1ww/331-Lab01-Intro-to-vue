@@ -13,6 +13,7 @@ createApp({
             { id: 2234, color: "green" },
             { id: 2235, color: "blue" },
         ]);
-        return { product, desc, image, product_link, in_stock, inventory, sale, details, variants };
+        const sizes = ref(["S", "M", "L"]);
+        return { product, desc, image, product_link, in_stock, inventory, sale, details, variants, sizes };
     },
 }).mount("#app");
