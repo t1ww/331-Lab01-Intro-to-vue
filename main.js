@@ -1,4 +1,4 @@
-const { createApp, ref } = Vue;
+const { createApp, ref, computed } = Vue;
 createApp({
     setup() {
         // Attributes
@@ -26,7 +26,11 @@ createApp({
         function toggleInStock() {
             inStock.value = !inStock.value;
         }
+        // title
+        const title = computed(()=> {
+            return brand.value + ' ' + product.value;
+        })
         // return
-        return { product, brand, desc, image, productLink, inStock, inventory, sale, details, variants, sizes, cart, addToCart, updateImage, toggleInStock };
+        return { title, desc, image, productLink, inStock, inventory, sale, details, variants, sizes, cart, addToCart, updateImage, toggleInStock };
     },
 }).mount("#app");
