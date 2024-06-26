@@ -17,7 +17,7 @@
                 <div class="product-container">
                     <div class="product-image">
                         <!-- image goes here -->
-                        <img :src="image" alt="" />
+                        <img :src="image" alt="" :class="{outOfStockImage: !inStock}"/>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,6 @@
                     @mouseover="updateImage(variant.image)" 
                     class="color-circle"
                     :style="{backgroundColor: variant.color}"
-                    :class="{outOfStockImg: !inStock}"
                 >
                     {{variant.color}}
                 </div>
