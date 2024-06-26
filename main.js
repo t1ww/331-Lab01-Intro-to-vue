@@ -1,6 +1,7 @@
 const { createApp, ref } = Vue;
 createApp({
     setup() {
+        // Attributes
         const product = ref("Boots");
         const desc = ref("Wears on both feet, keeps you warm");
         const image = ref("./assets/images/socks_green.jpg");
@@ -14,6 +15,11 @@ createApp({
             { id: 2235, color: "blue" },
         ]);
         const sizes = ref(["S", "M", "L"]);
-        return { product, desc, image, product_link, in_stock, inventory, sale, details, variants, sizes };
+        const cart = ref(0);
+        function add_to_cart() {
+            cart.value++;
+        }
+        // return
+        return { product, desc, image, product_link, in_stock, inventory, sale, details, variants, sizes, cart, add_to_cart };
     },
 }).mount("#app");
