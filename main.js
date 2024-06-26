@@ -3,6 +3,7 @@ createApp({
     setup() {
         // Attributes
         const product = ref("Boots");
+        const brand = ref('SE 331');
         const desc = ref("Wears on both feet, keeps you warm");
         const image = ref("./assets/images/socks_green.jpg");
         const inStock = ref(true);
@@ -26,6 +27,6 @@ createApp({
             inStock.value = !inStock.value;
         }
         // return
-        return { product, desc, image, productLink, inStock, inventory, sale, details, variants, sizes, cart, addToCart, updateImage, toggleInStock };
+        return { product, brand, desc, image, productLink, inStock, inventory, sale, details, variants, sizes, cart, addToCart, updateImage, toggleInStock };
     },
 }).mount("#app");
