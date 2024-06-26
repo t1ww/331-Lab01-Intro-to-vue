@@ -9,6 +9,10 @@ createApp({
         const product_link = ref("https://www.camt.cmu.ac.th/");
         const sale = ref(false);
         const details = ref(["50% cotton", "30% wool", "20% polyester"]);
-        return { product, desc, image, product_link, in_stock, inventory, sale, details };
+        const variants = ref([
+            { id: 2234, color: "green" },
+            { id: 2235, color: "blue" },
+        ]);
+        return { product, desc, image, product_link, in_stock, inventory, sale, details, variants };
     },
 }).mount("#app");
