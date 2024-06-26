@@ -46,7 +46,7 @@
                 <p><span v-for="size in sizes">{{size}} ,</span></p>
                 <!-- shorten version -->
                 <div>
-                    <button class="button" :disabled="!in_stock" @click="add_to_cart">Add to cart</button>
+                    <button class="button" :disabled="!in_stock" @click="add_to_cart" :class="{disabledButton: !in_stock}">Add to cart</button>
                     <button class="button" @click="toggle_in_stock">Toggle stock status</button>
                 </div>
             </div>
