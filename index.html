@@ -26,7 +26,7 @@
                 <p>description : {{desc}}</p>
 
                 <!-- stock -->
-                <p v-if="!inStock || inventory === 0">Out of Stock</p>
+                <p v-if="!inStock">Out of Stock</p>
                 <p v-else-if="inventory > 10">In Stock</p>
                 <p v-else>Low Stock</p>
 
@@ -37,7 +37,7 @@
                     <li v-for="detail in details">{{detail}}</li>
                 </ul>
                 <div v-for="(variant, index) in variants" :key="variant.id" 
-                    @mouseover="updateImage(index)" 
+                    @mouseover="updateVariant(index)" 
                     class="color-circle"
                     :style="{backgroundColor: variant.color}"
                 >

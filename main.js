@@ -5,8 +5,6 @@ createApp({
         const product = ref("Boots");
         const brand = ref('SE 331');
         const desc = ref("Wears on both feet, keeps you warm");
-        const image = ref("./assets/images/socks_green.jpg");
-        const inStock = ref(true);
         const inventory = ref(100);
         const productLink = ref("https://www.camt.cmu.ac.th/");
         const sale = ref(false);
