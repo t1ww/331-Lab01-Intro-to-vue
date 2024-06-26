@@ -24,9 +24,13 @@
             <div class="product-info">
                 <h1><a :href="product_link" target="_blank">{{product}}</a></h1>
                 <p>description : {{desc}}</p>
-                <p v-if="inventory > 10">In Stock</p>
-                <p v-else-if="inventory > 0">Low Stock</p>
-                <p v-else>Out of Stock</p>
+
+                <!-- stock -->
+                <p v-if="!in_stock || inventory === 0">Out of Stock</p>
+                <p v-else-if="inventory > 10">In Stock</p>
+                <p v-else>Low Stock</p>
+
+                <!-- sale -->
                 <p v-if="sale">ON SALE !!!</p>
                 <p v-else-if>not on sale</p>
                 <ul>
@@ -36,6 +40,7 @@
                 <p><span v-for="size in sizes">{{size}} ,</span></p>
                 <!-- shorten version -->
                 <button class="button" @click="add_to_cart">Add to cart</button>
+                <button class="button" @click="toggle_in_stock">Toggle stock status</button>
             </div>
         </div>
 
