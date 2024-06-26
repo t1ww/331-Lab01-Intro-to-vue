@@ -7,12 +7,11 @@ createApp({
         const desc = ref("Wears on both feet, keeps you warm");
         const inventory = ref(100);
         const productLink = ref("https://www.camt.cmu.ac.th/");
-        const sale = ref(false);
         const details = ref(["50% cotton", "30% wool", "20% polyester"]);
         // variants
         const variants = ref([
-            { id: 2234, color: "green", image: "./assets/images/socks_green.jpg", quantity: 50 },
-            { id: 2235, color: "blue", image: "./assets/images/socks_blue.jpg", quantity: 0 },
+            { id: 2234, color: "green", image: "./assets/images/socks_green.jpg", quantity: 50, onSale: true },
+            { id: 2235, color: "blue", image: "./assets/images/socks_blue.jpg", quantity: 0, onSale: false},
         ]);
         const selectedVariant = ref(0);
         function updateVariant(_index) {
@@ -23,6 +22,9 @@ createApp({
         })
         const inStock = computed(()=> {
             return variants.value[selectedVariant.value].quantity;
+        })
+        const onSale = computed(()=> {
+            return variants.value[selectedVariant.value].onSale;
         })
 
         // size
@@ -41,7 +43,10 @@ createApp({
         const title = computed(()=> {
             return brand.value + ' ' + product.value;
         })
+        const onSaleTitle = computed(()=> {
+            return brand.value + ' ' + product.value + ' is on sale!';
+        })
         // return
-        return { title, desc, image, productLink, inStock, inventory, sale, details, variants, sizes, cart, addToCart, updateImage, updateVariant, toggleInStock };
+        return { title, onSaleTitle, desc, image, productLink, inStock, inventory, onSale, details, variants, sizes, cart, addToCart, updateImage, updateVariant, toggleInStock };
     },
 }).mount("#app");

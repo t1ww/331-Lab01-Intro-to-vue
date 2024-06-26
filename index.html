@@ -22,7 +22,8 @@
                 </div>
             </div>
             <div class="product-info">
-                <h1><a :href="productLink" target="_blank">{{title}}</a></h1>
+                <h1 v-if="onSale"><a :href="productLink" target="_blank">{{onSaleTitle}}</a></h1>
+                <h1 v-else><a :href="productLink" target="_blank">{{title}}</a></h1>
                 <p>description : {{desc}}</p>
 
                 <!-- stock -->
@@ -32,7 +33,7 @@
 
                 <!-- sale -->
                 <p v-if="sale">ON SALE !!!</p>
-                <p v-else-if>not on sale</p>
+                <p v-else>not on sale</p>
                 <ul>
                     <li v-for="detail in details">{{detail}}</li>
                 </ul>
