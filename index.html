@@ -40,6 +40,7 @@
                     @mouseover="update_image(variant.image)" 
                     class="color-circle"
                     :style="{backgroundColor: variant.color}"
+                    :class="{outOfStockImg: !in_stock}"
                 >
                     {{variant.color}}
                 </div>
