@@ -9,6 +9,8 @@ const reviewList = {
             <br/>
             "{{ review.review }}"
             <br/>
+            <p v-if="review.recommend === 'Yes'">this user recommend this product</p>
+            <p v-else>this user doesn't recommend this product</p>
         </li>
         </ul>
     </div>
