@@ -36,6 +36,7 @@ const productDisplay = {
                 <button class="button" :disabled="!inStock" @click="removeFromCart" :class="{disabledButton: !inStock}">Remove from cart</button>
                 <button class="button" @click="toggleInStock">Toggle stock status</button>
             </div>
+            <review-form></review-form>
         </div>
 
     `,
