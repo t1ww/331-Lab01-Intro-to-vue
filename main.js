@@ -27,4 +27,7 @@ const app = createApp({
         return { cart, premium, details, updateCart, removeFromCart };
     },
 });
-app.component("product-display", productDisplay).component("product-details", productDetails).mount("#app");
+app.component("product-display", productDisplay)
+    .component("product-details", productDetails)
+    .component("review-form", reviewForm)
+    .mount("#app");
