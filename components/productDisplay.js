@@ -36,7 +36,7 @@ const productDisplay = {
                 <button class="button" :disabled="!inStock" @click="removeFromCart" :class="{disabledButton: !inStock}">Remove from cart</button>
                 <button class="button" @click="toggleInStock">Toggle stock status</button>
             </div>
-            <review-form></review-form>
+            <review-form @review-submitted="addReview"></review-form>
         </div>
 
     `,
@@ -46,6 +46,7 @@ const productDisplay = {
     },
     setup(props, {emit}) {
         // Attributes
+        const reviews = ref([]);
         const shipping = computed(() => {
             if (props.premium) {
                 return "free";
@@ -53,12 +54,13 @@ const productDisplay = {
                 return 30;
             }
         });
+        const sizes = ref(["S", "M", "L"]);
         const product = ref("Boots");
         const brand = ref("SE 331");
         const desc = ref("Wears on both feet, keeps you warm");
         const inventory = ref(100);
         const productLink = ref("https://www.camt.cmu.ac.th/");
-        // variants
+        // big attributes
         const variants = ref([
             { id: 2234, color: "green", image: "./assets/images/socks_green.jpg", quantity: 50, onSale: true },
             { id: 2235, color: "blue", image: "./assets/images/socks_blue.jpg", quantity: 0, onSale: false },
@@ -77,8 +79,10 @@ const productDisplay = {
             return variants.value[selectedVariant.value].onSale;
         });
 
-        // size
-        const sizes = ref(["S", "M", "L"]);
+        // functions
+        function addReview(_review){
+            reviews.value.push(_review);
+        }
         function addToCart() {
             emit('add-to-cart', variants.value[selectedVariant.value].id);
         }
