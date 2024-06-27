@@ -20,6 +20,8 @@ const productDisplay = {
                 <p v-else-if="inventory > 10">In Stock</p>
                 <p v-else>Low Stock</p>
 
+                <p>Shipping: {{shipping}}</p>
+
                 <!-- sale -->
                 <p v-if="sale">ON SALE !!!</p>
                 <p v-else>not on sale</p>
@@ -36,8 +38,18 @@ const productDisplay = {
             </div>
 
     `,
-    setup() {
+    props: {
+        premium: Boolean,
+    },
+    setup(props) {
         // Attributes
+        const shipping = computed(() => {
+            if (props.premium) {
+                return "free";
+            } else {
+                return 30;
+            }
+        });
         const product = ref("Boots");
         const brand = ref("SE 331");
         const desc = ref("Wears on both feet, keeps you warm");
@@ -82,6 +94,23 @@ const productDisplay = {
             return brand.value + " " + product.value + " is on sale!";
         });
         // return
-        return { title, onSaleTitle, desc, image, productLink, inStock, inventory, onSale, details, variants, sizes, addToCart, updateImage, updateVariant, toggleInStock };
+        return {
+            title,
+            onSaleTitle,
+            desc,
+            image,
+            productLink,
+            inStock,
+            inventory,
+            onSale,
+            details,
+            variants,
+            sizes,
+            addToCart,
+            updateImage,
+            updateVariant,
+            toggleInStock,
+            shipping,
+        };
     },
 };
