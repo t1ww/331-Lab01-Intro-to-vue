@@ -1,4 +1,5 @@
 const productDetails = {
+    /*html*/
     template: `
         <ul>
             <li v-for="detail in details">{{detail}}</li>

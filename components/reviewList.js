@@ -1,4 +1,5 @@
 const reviewList = {
+    /*html*/
     template:`
     <div class="review-container">
         <h3>Reviews:</h3>
@@ -11,8 +12,8 @@ const reviewList = {
         </li>
         </ul>
     </div>
-    `
-    ,props: {
+    `,
+    props: {
         reviews: {
             type: Array
         }
