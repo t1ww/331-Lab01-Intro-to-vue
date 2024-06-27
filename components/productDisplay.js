@@ -126,6 +126,7 @@ const productDisplay = {
             updateVariant,
             toggleInStock,
             shipping,
+            reviews
         };
     },
 };
