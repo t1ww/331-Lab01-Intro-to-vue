@@ -5,7 +5,7 @@ const reviewForm = {
             <label for="name">Name:</label>
             <input id="name" v-model="form.name">
 
-            <label for = "review">Review:</label>
+            <label for="review">Review:</label>
             <textarea id="review" v-model="form.review"></textarea>
 
             <label for="rating">Rating:</label>
@@ -35,7 +35,6 @@ const reviewForm = {
             form.name ='';
             form.review ='';
             form.rating = null;
-            console.log(productReview);
         }
         return {
             form,

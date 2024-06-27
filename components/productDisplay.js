@@ -36,6 +36,7 @@ const productDisplay = {
                 <button class="button" :disabled="!inStock" @click="removeFromCart" :class="{disabledButton: !inStock}">Remove from cart</button>
                 <button class="button" @click="toggleInStock">Toggle stock status</button>
             </div>
+            <review-list :reviews="reviews"></review-list>
             <review-form @review-submitted="addReview"></review-form>
         </div>
 
@@ -82,6 +83,10 @@ const productDisplay = {
         // functions
         function addReview(_review){
             reviews.value.push(_review);
+            console.log('Reviews : ');
+            reviews.value.forEach(element => {
+                console.log(element);
+            });
         }
         function addToCart() {
             emit('add-to-cart', variants.value[selectedVariant.value].id);
@@ -114,6 +119,7 @@ const productDisplay = {
             onSale,
             variants,
             sizes,
+            addReview,
             addToCart,
             removeFromCart,
             updateImage,
