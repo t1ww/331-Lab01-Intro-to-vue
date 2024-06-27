@@ -78,7 +78,7 @@ const productDisplay = {
         // size
         const sizes = ref(["S", "M", "L"]);
         function addToCart() {
-            emit('add-to-cart');
+            emit('add-to-cart', variants.value[selectedVariant.value].id);
         }
         function updateImage(_variant_image) {
             image.value = _variant_image;
