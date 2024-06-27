@@ -3,43 +3,44 @@ const productDisplay = {
     // html
     template: `
         <div class="product-display">
-                <div class="product-container">
-                    <div class="product-image">
-                        <!-- image goes here -->
-                        <img :src="image" alt="" :class="{outOfStockImage: !inStock}" />
-                    </div>
+            <div class="product-container">
+                <div class="product-image">
+                    <!-- image goes here -->
+                    <img :src="image" alt="" :class="{outOfStockImage: !inStock}" />
                 </div>
             </div>
-            <div class="product-info">
-                <h1 v-if="onSale"><a :href="productLink" target="_blank">{{onSaleTitle}}</a></h1>
-                <h1 v-else><a :href="productLink" target="_blank">{{title}}</a></h1>
-                <p>description : {{desc}}</p>
+        </div>
+        <div class="product-info">
+            <h1 v-if="onSale"><a :href="productLink" target="_blank">{{onSaleTitle}}</a></h1>
+            <h1 v-else><a :href="productLink" target="_blank">{{title}}</a></h1>
+            <p>description : {{desc}}</p>
 
-                <!-- stock -->
-                <p v-if="!inStock">Out of Stock</p>
-                <p v-else-if="inventory > 10">In Stock</p>
-                <p v-else>Low Stock</p>
+            <!-- stock -->
+            <p v-if="!inStock">Out of Stock</p>
+            <p v-else-if="inventory > 10">In Stock</p>
+            <p v-else>Low Stock</p>
 
-                <p>Shipping: {{shipping}}</p>
+            <p>Shipping: {{shipping}}</p>
 
-                <!-- sale -->
-                <p v-if="sale">ON SALE !!!</p>
-                <p v-else>not on sale</p>
-                <ul>
-                    <li v-for="detail in details">{{detail}}</li>
-                </ul>
-                <div v-for="(variant, index) in variants" :key="variant.id" @mouseover="updateVariant(index)" class="color-circle" :style="{backgroundColor: variant.color}">{{variant.color}}</div>
-                <p><span v-for="size in sizes">{{size}} ,</span></p>
-                <!-- shorten version -->
-                <div>
-                    <button class="button" :disabled="!inStock" @click="addToCart" :class="{disabledButton: !inStock}">Add to cart</button>
-                    <button class="button" @click="toggleInStock">Toggle stock status</button>
-                </div>
+            <!-- sale -->
+            <p v-if="sale">ON SALE !!!</p>
+            <p v-else>not on sale</p>
+
+            <product-details :details></product-details>
+            
+            <div v-for="(variant, index) in variants" :key="variant.id" @mouseover="updateVariant(index)" class="color-circle" :style="{backgroundColor: variant.color}">{{variant.color}}</div>
+            <p><span v-for="size in sizes">{{size}} ,</span></p>
+            <!-- shorten version -->
+            <div>
+                <button class="button" :disabled="!inStock" @click="addToCart" :class="{disabledButton: !inStock}">Add to cart</button>
+                <button class="button" @click="toggleInStock">Toggle stock status</button>
             </div>
+        </div>
 
     `,
     props: {
         premium: Boolean,
+        details: Array,
     },
     setup(props) {
         // Attributes
@@ -55,7 +56,6 @@ const productDisplay = {
         const desc = ref("Wears on both feet, keeps you warm");
         const inventory = ref(100);
         const productLink = ref("https://www.camt.cmu.ac.th/");
-        const details = ref(["50% cotton", "30% wool", "20% polyester"]);
         // variants
         const variants = ref([
             { id: 2234, color: "green", image: "./assets/images/socks_green.jpg", quantity: 50, onSale: true },
@@ -103,7 +103,6 @@ const productDisplay = {
             inStock,
             inventory,
             onSale,
-            details,
             variants,
             sizes,
             addToCart,

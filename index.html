@@ -13,10 +13,11 @@
         <div id="app">
             <div class="nav-bar"></div>
             <div class="cart">Cart( {{cart}} )</div>
-            <product-display :premium="premium"></product-display>
+            <product-display :premium="premium" :details="details"></product-display>
         </div>
 
         <!-- Import Js -->
+        <script src="./components/productDetails.js"></script>
         <script src="./components/productDisplay.js"></script>
         <script src="./main.js"></script>
     </body>
