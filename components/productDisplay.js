@@ -2,65 +2,38 @@
 const productDisplay = {
     // html
     template: `
-        <!DOCTYPE html>
-        <html lang="en">
-            <head>
-                <meta charset="UTF-8" />
-                <title>Intro SE331</title>
-                <!-- Import Styles -->
-                <link rel="stylesheet" href="./assets/styles.css" />
-                <!-- Import Vue.js -->
-                <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-            </head>
-
-            <body>
-                <div id="app">
-                    <div class="nav-bar"></div>
-                    <div class="cart">Cart( {{cart}} )</div>
-                    <div class="product-display">
-                        <div class="product-container">
-                            <div class="product-image">
-                                <!-- image goes here -->
-                                <img :src="image" alt="" :class="{outOfStockImage: !inStock}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h1 v-if="onSale"><a :href="productLink" target="_blank">{{onSaleTitle}}</a></h1>
-                        <h1 v-else><a :href="productLink" target="_blank">{{title}}</a></h1>
-                        <p>description : {{desc}}</p>
-
-                        <!-- stock -->
-                        <p v-if="!inStock">Out of Stock</p>
-                        <p v-else-if="inventory > 10">In Stock</p>
-                        <p v-else>Low Stock</p>
-
-                        <!-- sale -->
-                        <p v-if="sale">ON SALE !!!</p>
-                        <p v-else>not on sale</p>
-                        <ul>
-                            <li v-for="detail in details">{{detail}}</li>
-                        </ul>
-                        <div v-for="(variant, index) in variants" :key="variant.id" 
-                            @mouseover="updateVariant(index)" 
-                            class="color-circle"
-                            :style="{backgroundColor: variant.color}"
-                        >
-                            {{variant.color}}
-                        </div>
-                        <p><span v-for="size in sizes">{{size}} ,</span></p>
-                        <!-- shorten version -->
-                        <div>
-                            <button class="button" :disabled="!inStock" @click="addToCart" :class="{disabledButton: !inStock}">Add to cart</button>
-                            <button class="button" @click="toggleInStock">Toggle stock status</button>
-                        </div>
+        <div class="product-display">
+                <div class="product-container">
+                    <div class="product-image">
+                        <!-- image goes here -->
+                        <img :src="image" alt="" :class="{outOfStockImage: !inStock}" />
                     </div>
                 </div>
+            </div>
+            <div class="product-info">
+                <h1 v-if="onSale"><a :href="productLink" target="_blank">{{onSaleTitle}}</a></h1>
+                <h1 v-else><a :href="productLink" target="_blank">{{title}}</a></h1>
+                <p>description : {{desc}}</p>
 
-                <!-- Import Js -->
-                <script src="./main.js"></script>
-            </body>
-        </html>
+                <!-- stock -->
+                <p v-if="!inStock">Out of Stock</p>
+                <p v-else-if="inventory > 10">In Stock</p>
+                <p v-else>Low Stock</p>
+
+                <!-- sale -->
+                <p v-if="sale">ON SALE !!!</p>
+                <p v-else>not on sale</p>
+                <ul>
+                    <li v-for="detail in details">{{detail}}</li>
+                </ul>
+                <div v-for="(variant, index) in variants" :key="variant.id" @mouseover="updateVariant(index)" class="color-circle" :style="{backgroundColor: variant.color}">{{variant.color}}</div>
+                <p><span v-for="size in sizes">{{size}} ,</span></p>
+                <!-- shorten version -->
+                <div>
+                    <button class="button" :disabled="!inStock" @click="addToCart" :class="{disabledButton: !inStock}">Add to cart</button>
+                    <button class="button" @click="toggleInStock">Toggle stock status</button>
+                </div>
+            </div>
 
     `,
     setup() {
@@ -92,7 +65,6 @@ const productDisplay = {
 
         // size
         const sizes = ref(["S", "M", "L"]);
-        const cart = ref(0);
         function addToCart() {
             cart.value++;
         }
@@ -110,6 +82,6 @@ const productDisplay = {
             return brand.value + " " + product.value + " is on sale!";
         });
         // return
-        return { title, onSaleTitle, desc, image, productLink, inStock, inventory, onSale, details, variants, sizes, cart, addToCart, updateImage, updateVariant, toggleInStock };
+        return { title, onSaleTitle, desc, image, productLink, inStock, inventory, onSale, details, variants, sizes, addToCart, updateImage, updateVariant, toggleInStock };
     },
 };
