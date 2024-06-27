@@ -42,7 +42,7 @@ const productDisplay = {
         premium: Boolean,
         details: Array,
     },
-    setup(props) {
+    setup(props, {emit}) {
         // Attributes
         const shipping = computed(() => {
             if (props.premium) {
@@ -78,7 +78,7 @@ const productDisplay = {
         // size
         const sizes = ref(["S", "M", "L"]);
         function addToCart() {
-            cart.value++;
+            emit('add-to-cart');
         }
         function updateImage(_variant_image) {
             image.value = _variant_image;

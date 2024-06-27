@@ -4,7 +4,10 @@ const app = createApp({
         const cart = ref(0);
         const premium = ref(false);
         const details = ref(["50% cotton", "30% wool", "20% polyester"]);
-        return { cart, premium, details };
+        function updateCart() {
+            cart.value++;
+        }
+        return { cart, premium, details, updateCart };
     },
 });
 app.component("product-display", productDisplay).component("product-details", productDetails).mount("#app");
